@@ -22,3 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('customers', CustomerController::class);
+Route::post('/deleteCustomer/{id}', [CustomerController::class, 'destroy']);
+
+
+//Route::post('/deleteCustomer/{id}', [CustomerController::class, 'destroy'])->name('deleteCustomer');

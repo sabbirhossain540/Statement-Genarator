@@ -44,7 +44,7 @@
                                 <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $user->id }})"><i class="fas fa-trash-alt"></i></button>
                             </td>
 
-                            
+
                         </tr>
                     @endforeach
 
@@ -63,7 +63,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>Are you sure want to delete this doctor?</h4>
+                        <h4>Are you sure want to delete this customer?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -85,7 +85,7 @@
         });
         function handleDelete(id){
             var form = document.getElementById('deleteForm')
-            form.action = '/deleteDoctor/'+id
+            form.action = '/deleteCustomer/'+id
             //console.log(form)
             $('#deleteModal').modal('show')
         }

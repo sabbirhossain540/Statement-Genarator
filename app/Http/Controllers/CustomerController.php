@@ -36,20 +36,39 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $cusModel = new Customer();
-        $cusModel->cus_id = $request->cus_id;
-        $cusModel->name = $request->name;
-        $cusModel->father_name = $request->fatherName;
-        $cusModel->mother_name = $request->motherName;
-        $cusModel->spouse = $request->spouseName;
-        $cusModel->mobile = $request->mobileNo;
-        $cusModel->address = $request->address;
-        $cusModel->account_no = $request->accountNo;
-        $cusModel->opening_date = $request->openingDate;
-        $cusModel->account_type = $request->accountType;
-        $cusModel->save();
-        session()->flash('success', 'Csutomer created successfully');
-        return redirect()->route('customers.index');
+        if($request->id != ""){
+            $cusInfo = Customer::findOrFail($request->id);
+            $cusInfo->cus_id = $request->cus_id;
+            $cusInfo->name = $request->name;
+            $cusInfo->father_name = $request->fatherName;
+            $cusInfo->mother_name = $request->motherName;
+            $cusInfo->spouse = $request->spouseName;
+            $cusInfo->mobile = $request->mobileNo;
+            $cusInfo->address = $request->address;
+            $cusInfo->account_no = $request->accountNo;
+            $cusInfo->opening_date = $request->openingDate;
+            $cusInfo->account_type = $request->accountType;
+            $cusInfo->save();
+            session()->flash('success', 'Csutomer updated successfully');
+            return redirect()->route('customers.index');
+
+        }else{
+            $cusModel = new Customer();
+            $cusModel->cus_id = $request->cus_id;
+            $cusModel->name = $request->name;
+            $cusModel->father_name = $request->fatherName;
+            $cusModel->mother_name = $request->motherName;
+            $cusModel->spouse = $request->spouseName;
+            $cusModel->mobile = $request->mobileNo;
+            $cusModel->address = $request->address;
+            $cusModel->account_no = $request->accountNo;
+            $cusModel->opening_date = $request->openingDate;
+            $cusModel->account_type = $request->accountType;
+            $cusModel->save();
+            session()->flash('success', 'Csutomer created successfully');
+            return redirect()->route('customers.index');
+        }
+
     }
 
     /**
@@ -71,7 +90,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customerInfo = Customer::where('id',$id)->first();
+        return view('customer.edit',compact(array('customerInfo')));
     }
 
     /**
@@ -94,6 +114,10 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Customer::findOrFail($id);
+        //$this->activity_log("delete doctor. { name:".$user->name." id:".$user->id." }", "delete");
+        $user->delete();
+        session()->flash('success', 'Customer deleted successfully');
+        return redirect()->route('customers.index');
     }
 }
