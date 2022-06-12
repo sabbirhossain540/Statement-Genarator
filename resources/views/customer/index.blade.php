@@ -43,6 +43,8 @@
                                 <a href="{{route('customers.edit',$user->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $user->id }})"><i class="fas fa-trash-alt"></i></button>
                             </td>
+
+                            
                         </tr>
                     @endforeach
 
