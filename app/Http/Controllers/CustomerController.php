@@ -79,7 +79,8 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customerInfo = Customer::where('id',$id)->first();
+        return view('customer.show', compact(array('customerInfo')));
     }
 
     /**
