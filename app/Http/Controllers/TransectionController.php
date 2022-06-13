@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\TransectionInfo;
 use Illuminate\Http\Request;
 
 class TransectionController extends Controller
@@ -14,7 +15,8 @@ class TransectionController extends Controller
      */
     public function index()
     {
-        return view('trans.index');
+        $allTransection = TransectionInfo::with('getCustomerName')->get();
+        return view('trans.index', compact('allTransection'));
     }
 
     /**
@@ -36,7 +38,19 @@ class TransectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transModel = new TransectionInfo();
+        $transModel->cus_id = $request->cus_id;
+        $transModel->tr_date = $request->transDate;
+        $transModel->particulars = $request->particulars;
+        $transModel->instrument_no = $request->instrument_no;
+        $transModel->withdraw = $request->withdraw;
+        $transModel->deposite = $request->deposite;
+        $transModel->balace = 0;
+        $transModel->save();
+
+        session()->flash('success', 'Transection info created successfully');
+        return redirect()->route('transinfo.index');
+
     }
 
     /**

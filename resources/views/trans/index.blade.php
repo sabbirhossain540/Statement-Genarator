@@ -18,35 +18,37 @@
                     <thead>
                     <tr>
                         <th width="5%">SN</th>
-                        <th width="10%">Name</th>
-                        <th width="10%">Father Name</th>
-                        <th width="10%">Customer ID</th>
-                        <th width="10%">Account No</th>
-                        <th width="10%">Mobile No</th>
-                        <th width="20%">Address</th>
+                        <th width="15%">Customer Name</th>
+                        <th width="10%">Trans Date</th>
+                        <th width="10%">Particulars</th>
+                        <th width="10%">Instrument no</th>
+                        <th width="10%">Withdraw</th>
+                        <th width="10%">Deposite</th>
+                        <th width="10%">Balance</th>
                         <th width="20%">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-{{--                    @foreach($allCustomers as $key=>$user)--}}
-{{--                        <tr>--}}
-{{--                            <td>{{ $key+1 }}</td>--}}
-{{--                            <td>{{ $user->name }}</td>--}}
-{{--                            <td>{{ $user->father_name }}</td>--}}
-{{--                            <td>{{ $user->cus_id }}</td>--}}
-{{--                            <td>{{ $user->account_no }}</td>--}}
-{{--                            <td>{{ $user->mobile }}</td>--}}
-{{--                            <td>{{ $user->address }}</td>--}}
-{{--                            <td>--}}
-{{--                                <a href="{{route('customers.show',$user->id)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>--}}
-{{--                                <a href="{{route('customers.show',$user->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-print"></i></a>--}}
-{{--                                <a href="{{route('customers.edit',$user->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>--}}
-{{--                                <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $user->id }})"><i class="fas fa-trash-alt"></i></button>--}}
-{{--                            </td>--}}
+                    @foreach($allTransection as $key=>$transection)
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $transection->getCustomerName['name'] }}</td>
+                            <td>{{ $transection->tr_date }}</td>
+                            <td>{{ $transection->particulars }}</td>
+                            <td>{{ $transection->instrument_no }}</td>
+                            <td>{{ $transection->withdraw }}</td>
+                            <td>{{ $transection->deposite }}</td>
+                            <td>{{ $transection->balace }}</td>
+                            <td>
+                                <a href="{{route('transinfo.show',$transection->id)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="{{route('transinfo.show',$transection->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-print"></i></a>
+                                <a href="{{route('transinfo.edit',$transection->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $transection->id }})"><i class="fas fa-trash-alt"></i></button>
+                            </td>
 
 
-{{--                        </tr>--}}
-{{--                    @endforeach--}}
+                        </tr>
+                    @endforeach
 
                     </tbody>
                 </table>
