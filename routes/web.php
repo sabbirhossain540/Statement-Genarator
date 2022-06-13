@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TransectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('customers', CustomerController::class);
 Route::post('/deleteCustomer/{id}', [CustomerController::class, 'destroy']);
+Route::resource('transinfo', TransectionController::class);
 
 
 //Route::post('/deleteCustomer/{id}', [CustomerController::class, 'destroy'])->name('deleteCustomer');

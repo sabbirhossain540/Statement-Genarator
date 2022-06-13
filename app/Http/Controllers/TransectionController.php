@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class TransectionController extends Controller
@@ -13,7 +14,7 @@ class TransectionController extends Controller
      */
     public function index()
     {
-        //
+        return view('trans.index');
     }
 
     /**
@@ -23,7 +24,8 @@ class TransectionController extends Controller
      */
     public function create()
     {
-        //
+        $allcustomers = Customer::all();
+        return view('trans.create', compact('allcustomers'));
     }
 
     /**
